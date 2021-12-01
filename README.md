@@ -100,3 +100,46 @@ type CocaColaBottle struct {
 
 -------------------------------------------------------------------
 
+### 3.Builder
+##### Giới thiệu về Builder
+Builder pattern là một trong những Creational pattern. Builder pattern là mẫu thiết kế đối tượng được tạo ra để xây dựng một đôi tượng phức tạp bằng cách sử dụng các đối tượng đơn giản và sử dụng tiếp cận từng bước, việc xây dựng các đối tượng đôc lập với các đối tượng khác.
+##### Cách sử dụng Builder trong link github tìm được
+Trong phần repo ở [link github](https://github.com/AlexanderGrom/go-patterns) mà nhóm bọn mình đã tìm hiểu được thì việc sử dụng **Builder** được thể hiện như sau:
+```
+// Package builder is an example of the Builder Pattern.
+package builder
+
+// Builder provides a builder interface.
+type Builder interface {
+	MakeHeader(str string)
+	MakeBody(str string)
+	MakeFooter(str string)
+}
+```
+
+```
+// ConcreteBuilder implements Builder interface.
+type ConcreteBuilder struct {
+	product *Product
+}
+
+// MakeHeader builds a header of document..
+func (b *ConcreteBuilder) MakeHeader(str string) {
+	b.product.Content += "<header>" + str + "</header>"
+}
+
+// MakeBody builds a body of document.
+func (b *ConcreteBuilder) MakeBody(str string) {
+	b.product.Content += "<article>" + str + "</article>"
+}
+
+// MakeFooter builds a footer of document.
+func (b *ConcreteBuilder) MakeFooter(str string) {
+	b.product.Content += "<footer>" + str + "</footer>"
+}
+```
+
+##### Nhận xét về cách sử dụng Builder ở trên:
+* Builder : là interface khai báo phương thức tạo đối tượng.
+* ConcreteBuilder : kế thừa Builder và cài đặt chi tiết cách tạo ra đối tượng. Nó sẽ xác định và nắm giữ các thể hiện mà nó tạo ra, đồng thời nó cũng cung cấp phương thức để trả các các thể hiện mà nó đã tạo ra trước đó.
+
