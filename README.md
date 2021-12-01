@@ -612,4 +612,186 @@ func (c *ToggleOnCommand) Execute() string {
 -------------------------------------------------------------------------
 
 
+### 15.Interpreter
+##### Giới thiệu về Interpreter
+Interpreter Pattern giúp người lập trình có thể “xây dựng” những đối tượng “động” bằng cách đọc mô tả về đối tượng rồi sau đó “xây dựng” đối tượng đúng theo mô tả đó.
+##### Cách sử dụng Iterator trong link github tìm được
+Trong phần repo ở [link github](https://github.com/AlexanderGrom/go-patterns) mà nhóm bọn mình đã tìm hiểu được thì việc sử dụng **Interpreter** được thể hiện như sau:
+```
+// Iterator provides a iterator interface.
+type Iterator interface {
+	Index() int
+	Value() interface{}
+	Has() bool
+	Next()
+	Prev()
+	Reset()
+	End()
+}
+
+// Aggregate provides a collection interface.
+type Aggregate interface {
+	Iterator() Iterator
+}
+```
+
+```
+// BookIterator implements the Iterator interface.
+type BookIterator struct {
+	shelf    *BookShelf
+	index    int
+	internal int
+}
+
+// Index returns current index
+func (i *BookIterator) Index() int {
+	return i.index
+}
+
+// Value returns current value
+func (i *BookIterator) Value() interface{} {
+	return i.shelf.Books[i.index]
+}
+```
+
+##### Nhận xét về cách sử dụng Interpreter ở trên:
+* Iterator là một interface hoặc abstract class, định nghĩa phương thức interpreter chung cho tất cả các node trong cấu trúc cây phân tích ngữ pháp. Expression được biểu diễn như một cấu trúc cây phân cấp, mỗi implement của Expression có thể gọi một node.
+* Cài đặt và sử dụng ngữ pháp rất đơn giản. Các lớp xác định các nút trong cây cú pháp có các implement tương tự.
+-------------------------------------------------------------------------
+
+
+### 16.Iterator
+##### Giới thiệu về Iterator
+Iterator Pattern là một trong những Pattern thuộc nhóm hành vi Behavior Pattern. Nó được sử dụng để cung cấp một cách thức truy cập tuần tự tới các phần tử của một đối tượng tổng hợp, mà không cần phải tạo dựng riêng các phương pháp truy cập cho đối tượng tổng hợp này.
+##### Cách sử dụng Iterator trong link github tìm được
+Trong phần repo ở [link github](https://github.com/AlexanderGrom/go-patterns) mà nhóm bọn mình đã tìm hiểu được thì việc sử dụng **Iterator** được thể hiện như sau:
+```
+// Iterator provides a iterator interface.
+type Iterator interface {
+	Index() int
+	Value() interface{}
+	Has() bool
+	Next()
+	Prev()
+	Reset()
+	End()
+}
+
+// Aggregate provides a collection interface.
+type Aggregate interface {
+	Iterator() Iterator
+}
+```
+
+```
+// BookIterator implements the Iterator interface.
+type BookIterator struct {
+	shelf    *BookShelf
+	index    int
+	internal int
+}
+
+// Index returns current index
+func (i *BookIterator) Index() int {
+	return i.index
+}
+
+// Value returns current value
+func (i *BookIterator) Value() interface{} {
+	return i.shelf.Books[i.index]
+}
+```
+
+##### Nhận xét về cách sử dụng Iterator ở trên:
+* Iterator : là một interface class, định nghĩa các phương thức để truy cập và duyệt qua các phần tử.
+* Có thể implement các loại collection mới và iterator mới, sau đó chuyển chúng vào code hiện có mà không vi phạm bất cứ nguyên tắc gì.
+-------------------------------------------------------------------------
+
+
+
+### 17.Mediator
+##### Giới thiệu về Mediator
+Mediator Pattern là một trong những Pattern thuộc nhóm hành vi Behavior Pattern.Mô hình này cung cấp một lớp trung gian có nhiệm vụ xử lý thông tin liên lạc giữa các tầng lớp, hỗ trợ bảo trì mã code dễ dàng bằng cách khớp nối lỏng lẻo.
+##### Cách sử dụng Mediator trong link github tìm được
+Trong phần repo ở [link github](https://github.com/AlexanderGrom/go-patterns) mà nhóm bọn mình đã tìm hiểu được thì việc sử dụng **Mediator** được thể hiện như sau:
+```
+// Mediator provides a mediator interface.
+type Mediator interface {
+	Notify(msg string)
+}
+
+
+type ConcreteMediator struct {
+	*Farmer
+	*Cannery
+	*Shop
+}
+```
+
+```
+// Notify implementation.
+func (m *ConcreteMediator) Notify(msg string) {
+	if msg == "Farmer: Tomato complete..." {
+		m.Cannery.AddMoney(-15000.00)
+		m.Farmer.AddMoney(15000.00)
+		m.Cannery.MakeKetchup(m.Farmer.GetTomato())
+	} else if msg == "Cannery: Ketchup complete..." {
+		m.Shop.AddMoney(-30000.00)
+		m.Cannery.AddMoney(30000.00)
+		m.Shop.SellKetchup(m.Cannery.GetKetchup())
+	}
+```
+
+##### Nhận xét về cách sử dụng Mediator ở trên:
+* Mediator : là một interface, định nghĩa các phương thức để giao tiếp với các Colleague object.
+* ConcreteMediator : cài đặt các phương thức của Mediator, biết và quản lý các Colleague object.
+-------------------------------------------------------------------------
+
+
+### 18.Memento
+##### Giới thiệu về Memento
+Memento là một trong những Pattern thuộc nhóm hành vi Behavior Pattern. Memento là mẫu thiết kế có thể lưu lại trạng thái của một đối tượng để khôi phục lại sau này mà không vi phạm nguyên tắc đóng gói.
+##### Cách sử dụng Memento trong link github tìm được
+Trong phần repo ở [link github](https://github.com/AlexanderGrom/go-patterns) mà nhóm bọn mình đã tìm hiểu được thì việc sử dụng **Memento** được thể hiện như sau:
+```
+// Package memento is an example of the Memento Pattern.
+package memento
+
+// Originator implements a state master.
+type Originator struct {
+	State string
+}
+
+// CreateMemento returns state storage.
+func (o *Originator) CreateMemento() *Memento {
+	return &Memento{state: o.State}
+}
+
+// SetMemento sets old state.
+func (o *Originator) SetMemento(memento *Memento) {
+	o.State = memento.GetState()
+}
+
+// Memento implements storage for the state of Originator
+type Memento struct {
+	state string
+}
+
+// GetState returns state.
+func (m *Memento) GetState() string {
+	return m.state
+}
+
+// Caretaker keeps Memento until it is needed by Originator.
+type Caretaker struct {
+	Memento *Memento
+}
+```
+
+##### Nhận xét về cách sử dụng Memento ở trên:
+* Originator : đại diện cho đối tượng mà chúng ta muốn lưu. Nó sử dụng memento để lưu và khôi phục trạng thái bên trong của nó.
+* Memento : đại diện cho một đối tượng để lưu trữ trạng thái của Originator. 
+-------------------------------------------------------------------------
+
+
 
