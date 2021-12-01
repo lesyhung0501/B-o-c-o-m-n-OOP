@@ -225,3 +225,181 @@ func (p *ConcreteProduct) Clone() Prototyper {
 * Cải thiện performance: giảm chi phí để tạo ra một đối tượng mới theo chuẩn, điều này sẽ làm tăng hiệu suất so với việc sử dụng từ khóa new để tạo đối tượng mới.
 * Giảm độ phức tạp cho việc khởi tạo đối tượng: do mỗi lớp chỉ implement cách clone của chính nó.
 
+
+----------------------------------------------------------------------------
+### 6.Adapter
+##### Giới thiệu về Adapter
+Adapter Pattern là một trong những Pattern thuộc nhóm cấu trúc. Adapter Pattern cho phép các inteface không liên quan tới nhau có thể làm việc cùng nhau. Đối tượng giúp kết nối các interface gọi là Adapter.
+##### Cách sử dụng Adapter trong link github tìm được
+Trong phần repo ở [link github](https://github.com/AlexanderGrom/go-patterns) mà nhóm bọn mình đã tìm hiểu được thì việc sử dụng **Adapter** được thể hiện như sau:
+```
+// Package adapter is an example of the Adapter Pattern.
+package adapter
+
+// Target provides an interface with which the system should work.
+type Target interface {
+	Request() string
+}
+
+// Adaptee implements system to be adapted.
+type Adaptee struct {
+}
+```
+
+```
+// NewAdapter is the Adapter constructor.
+func NewAdapter(adaptee *Adaptee) Target {
+	return &Adapter{adaptee}
+}
+
+// SpecificRequest implementation.
+func (a *Adaptee) SpecificRequest() string {
+	return "Request"
+}
+
+// Adapter implements Target interface and is an adapter.
+type Adapter struct {
+	*Adaptee
+}
+
+// Request is an adaptive method.
+func (a *Adapter) Request() string {
+	return a.SpecificRequest()
+}
+```
+
+##### Nhận xét về cách sử dụng Adapter ở trên:
+* Cho phép nhiều đối tượng có interface giao tiếp khác nhau có thể tương tác và giao tiếp với nhau.
+* Tăng khả năng sử dụng lại thư viện với interface không thay đổi do không có mã nguồn.
+
+-------------------------------------------------
+
+### 7.Bridge
+##### Giới thiệu về Bridge
+Bridge Pattern là một trong những Pattern thuộc nhóm cấu trúc Structural Pattern. Ý tưởng của nó là tách tính trừu tượng ra khỏi tính hiện thực của nó. Từ đó có thể dễ dàng chỉnh sửa hoặc thay thế mà không làm ảnh hưởng đến những nơi có sử dụng lớp ban đầu.
+##### Cách sử dụng Bridge trong link github tìm được
+Trong phần repo ở [link github](https://github.com/AlexanderGrom/go-patterns) mà nhóm bọn mình đã tìm hiểu được thì việc sử dụng **Bridge** được thể hiện như sau:
+```
+// Carer provides car interface.
+type Carer interface {
+	Rase() string
+}
+
+// Enginer provides engine interface.
+type Enginer interface {
+	GetSound() string
+}
+
+// Car implementation.
+type Car struct {
+	engine Enginer
+}
+```
+
+```
+// NewCar is the Car constructor.
+func NewCar(engine Enginer) Carer {
+	return &Car{
+		engine: engine,
+	}
+}
+
+// Rase implementation.
+func (c *Car) Rase() string {
+	return c.engine.GetSound()
+}
+```
+
+##### Nhận xét về cách sử dụng Bridge ở trên:
+* Implementor : định ra các interface cho các lớp hiện thực. Thông thường nó là interface định ra các tác vụ nào đó của Abstraction.
+* Code sẽ gọn gàn hơn và kích thước ứng dụng sẽ nhỏ hơn: do giảm được số class không cần thiết.
+
+-------------------------------------------------
+
+### 8.Composite
+##### Giới thiệu về Composite
+Composite Pattern là một sự tổng hợp những thành phần có quan hệ với nhau để tạo ra thành phần lớn hơn. Nó cho phép thực hiện các tương tác với tất cả đối tượng trong mẫu tương tự nhau.
+##### Cách sử dụng Composite trong link github tìm được
+Trong phần repo ở [link github](https://github.com/AlexanderGrom/go-patterns) mà nhóm bọn mình đã tìm hiểu được thì việc sử dụng **Composite** được thể hiện như sau:
+```
+// Component provides an interface for branches and leaves of a tree.
+type Component interface {
+	Add(child Component)
+	Name() string
+	Child() []Component
+	Print(prefix string) string
+}
+
+// Directory implements branches of a tree
+type Directory struct {
+	name   string
+	childs []Component
+}
+```
+
+```
+// Add appends an element to the tree branch.
+func (d *Directory) Add(child Component) {
+	d.childs = append(d.childs, child)
+}
+
+// Name returns name of the Component.
+func (d *Directory) Name() string {
+	return d.name
+}
+
+// Child returns child elements.
+func (d *Directory) Child() []Component {
+	return d.childs
+}
+```
+
+##### Nhận xét về cách sử dụng Composite ở trên:
+* Base Component : là một interface hoặc abstract class quy định các method chung cần phải có cho tất cả các thành phần tham gia vào mẫu này.
+* Việc quản lý việc truy cập tốt hơn vì chỉ có một thể hiện duy nhất.
+* Cung cấp cùng một cách sử dụng đối với từng đối tượng riêng lẻ hoặc nhóm các đối tượng với nhau.
+
+----------------------------------------------------------------------
+
+### 9.Decorator
+##### Giới thiệu về Decorator
+Decorator pattern là một trong những Pattern thuộc nhóm cấu trúc. Nó cho phép người dùng thêm chức năng mới vào đối tượng hiện tại mà không muốn ảnh hưởng đến các đối tượng khác. Kiểu thiết kế này có cấu trúc hoạt động như một lớp bao bọc (wrap) cho lớp hiện có. Mỗi khi cần thêm tính năng mới, đối tượng hiện có được wrap trong một đối tượng mới (decorator class).
+##### Cách sử dụng Decorator trong link github tìm được
+Trong phần repo ở [link github](https://github.com/AlexanderGrom/go-patterns) mà nhóm bọn mình đã tìm hiểu được thì việc sử dụng **Decorator** được thể hiện như sau:
+```
+// Package decorator is an example of the Decorator Pattern.
+package decorator
+
+// Component provides an interface for a decorator and component.
+type Component interface {
+	Operation() string
+}
+
+// ConcreteComponent implements a component.
+type ConcreteComponent struct {
+}
+
+// Operation implementation.
+func (c *ConcreteComponent) Operation() string {
+	return "I am component!"
+}
+
+// ConcreteDecorator implements a decorator.
+type ConcreteDecorator struct {
+	component Component
+}
+
+// Operation wraps operation of component
+func (d *ConcreteDecorator) Operation() string {
+	return "<strong>" + d.component.Operation() + "</strong>"
+}
+```
+
+##### Nhận xét về cách sử dụng Decorator ở trên:
+* Component: là một interface quy định các method chung cần phải có cho tất cả các thành phần tham gia vào mẫu này.
+* ConcreteComponent : là lớp hiện thực (implements) các phương thức của Component.
+* ConcreteDecorator : là lớp hiện thực (implements) các phương thức của Decorator, nó cài đặt thêm các tính năng mới cho Component.
+-------------------------------------------------------------------------
+
+
+
