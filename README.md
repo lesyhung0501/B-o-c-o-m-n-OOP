@@ -1,6 +1,6 @@
 # Báo cáo design partens
 Báo cáo môn OOP<br>
-## Singleton Pattern
+## 1.Singleton Pattern
 ##### Giới thiệu về Singleton Pattern
 Singleton đảm bảo chỉ duy nhất một thể hiện (instance) được tạo ra và nó sẽ cung cấp cho chúng ta một method để có thể truy xuất được thể hiện duy nhất đó mọi lúc mọi nơi trong chương trình.
 ##### Cách sử dụng Singleton Pattern trong link github tìm được
@@ -30,3 +30,8 @@ func GetInstance() *Singleton {
 	return instance
 }
 ```
+
+##### Nhận xét về cách sử dụng Singleton Pattern ở trên:
+* Đảm bảo rằng chỉ có một instance của lớp.
+* Việc quản lý việc truy cập tốt hơn vì chỉ có một thể hiện duy nhất.
+* Có thể quản lý số lượng thể hiện của một lớp trong giớn hạn chỉ định.
