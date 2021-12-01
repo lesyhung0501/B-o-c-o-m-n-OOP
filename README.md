@@ -148,7 +148,7 @@ func (b *ConcreteBuilder) MakeFooter(str string) {
 ##### Giới thiệu về Factory Method
 Factory Method Design Pattern hay gọi ngắn gọn là Factory Pattern là một trong những Pattern thuộc nhóm Creational Design Pattern. Nhiệm vụ của Factory Pattern là quản lý và trả về các đối tượng theo yêu cầu, giúp cho việc khởi tạo đổi tượng một cách linh hoạt hơn.
 ##### Cách sử dụng Factory Method trong link github tìm được
-Trong phần repo ở [link github](https://github.com/AlexanderGrom/go-patterns) mà nhóm bọn mình đã tìm hiểu được thì việc sử dụng **Singleton Pattern** được thể hiện như sau:
+Trong phần repo ở [link github](https://github.com/AlexanderGrom/go-patterns) mà nhóm bọn mình đã tìm hiểu được thì việc sử dụng **Factory Method** được thể hiện như sau:
 ```
 // Creator provides a factory interface.
 type Creator interface {
@@ -182,3 +182,46 @@ func (p *ConcreteCreator) CreateProduct(action action) Product {
 * Factory class sử dụng Factory method dạng switch-case để xác định class con đầu ra.
 
 --------------------------------------------------------------
+
+### 5.Prototype
+##### Giới thiệu về Prototype
+Prototype pattern là một trong những Creational pattern. Nó có nhiệm vụ khởi tạo một đối tượng bằng cách clone một đối tượng đã tồn tại thay vì khởi tạo với từ khoá new. Đối tượng mới là một bản sao có thể giống 100% với đối tượng gốc, chúng ta có thể thay đổi dữ liệu của nó mà không ảnh hưởng đến đối tượng gốc.
+##### Cách sử dụng Prototype trong link github tìm được
+Trong phần repo ở [link github](https://github.com/AlexanderGrom/go-patterns) mà nhóm bọn mình đã tìm hiểu được thì việc sử dụng **Prototype** được thể hiện như sau:
+```
+// Package prototype is an example of the Singleton Pattern.
+package prototype
+
+// Prototyper provides a cloning interface.
+type Prototyper interface {
+	Clone() Prototyper
+	GetName() string
+}
+
+// ConcreteProduct implements product "A"
+type ConcreteProduct struct {
+	name string // Имя продукта
+}
+
+// NewConcreteProduct is the Prototyper constructor.
+func NewConcreteProduct(name string) Prototyper {
+	return &ConcreteProduct{
+		name: name,
+	}
+}
+
+// GetName returns product name
+func (p *ConcreteProduct) GetName() string {
+	return p.name
+}
+
+// Clone returns a cloned object.
+func (p *ConcreteProduct) Clone() Prototyper {
+	return &ConcreteProduct{p.name}
+}
+```
+
+##### Nhận xét về cách sử dụng Prototype ở trên:
+* Cải thiện performance: giảm chi phí để tạo ra một đối tượng mới theo chuẩn, điều này sẽ làm tăng hiệu suất so với việc sử dụng từ khóa new để tạo đối tượng mới.
+* Giảm độ phức tạp cho việc khởi tạo đối tượng: do mỗi lớp chỉ implement cách clone của chính nó.
+
