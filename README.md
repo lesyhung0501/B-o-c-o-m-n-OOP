@@ -311,7 +311,7 @@ func (c *Car) Rase() string {
 ```
 
 ##### Nhận xét về cách sử dụng Bridge ở trên:
-* Implementor : định ra các interface cho các lớp hiện thực. Thông thường nó là interface định ra các tác vụ nào đó của Abstraction.
+* Implementor: định ra các interface cho các lớp hiện thực. Thông thường nó là interface định ra các tác vụ nào đó của Abstraction.
 * Code sẽ gọn gàn hơn và kích thước ứng dụng sẽ nhỏ hơn: do giảm được số class không cần thiết.
 
 -------------------------------------------------
@@ -355,7 +355,7 @@ func (d *Directory) Child() []Component {
 ```
 
 ##### Nhận xét về cách sử dụng Composite ở trên:
-* Base Component : là một interface hoặc abstract class quy định các method chung cần phải có cho tất cả các thành phần tham gia vào mẫu này.
+* Base Component: là một interface hoặc abstract class quy định các method chung cần phải có cho tất cả các thành phần tham gia vào mẫu này.
 * Việc quản lý việc truy cập tốt hơn vì chỉ có một thể hiện duy nhất.
 * Cung cấp cùng một cách sử dụng đối với từng đối tượng riêng lẻ hoặc nhóm các đối tượng với nhau.
 
@@ -397,8 +397,8 @@ func (d *ConcreteDecorator) Operation() string {
 
 ##### Nhận xét về cách sử dụng Decorator ở trên:
 * Component: là một interface quy định các method chung cần phải có cho tất cả các thành phần tham gia vào mẫu này.
-* ConcreteComponent : là lớp hiện thực (implements) các phương thức của Component.
-* ConcreteDecorator : là lớp hiện thực (implements) các phương thức của Decorator, nó cài đặt thêm các tính năng mới cho Component.
+* ConcreteComponent: là lớp hiện thực (implements) các phương thức của Component.
+* ConcreteDecorator: là lớp hiện thực (implements) các phương thức của Decorator, nó cài đặt thêm các tính năng mới cho Component.
 -------------------------------------------------------------------------
 
 
@@ -495,8 +495,8 @@ func (f *ConcreteFlyweight) Draw(width, height int, opacity float64) string {
 ```
 
 ##### Nhận xét về cách sử dụng Flyweight ở trên:
-* Flyweight : là một interface class, định nghĩa các các thành phần của một đối tượng.
-* ConcreteFlyweight : triển khai các phương thức đã được định nghĩa trong Flyweight. Việc triển khai này phải thực hiện các khả năng của trạng thái nội tại. Đó là dữ liệu phải không thể thay đổi và có thể chia sẻ. Các đối tượng là phi trạng thái trong triển khai này. Vì vậy, đối tượng ConcreteFlyweight giống nhau có thể được sử dụng trong các ngữ cảnh khác nhau.
+* Flyweight: là một interface class, định nghĩa các các thành phần của một đối tượng.
+* ConcreteFlyweight: triển khai các phương thức đã được định nghĩa trong Flyweight. Việc triển khai này phải thực hiện các khả năng của trạng thái nội tại. Đó là dữ liệu phải không thể thay đổi và có thể chia sẻ. Các đối tượng là phi trạng thái trong triển khai này. Vì vậy, đối tượng ConcreteFlyweight giống nhau có thể được sử dụng trong các ngữ cảnh khác nhau.
 -------------------------------------------------------------------------
 
 
@@ -576,8 +576,8 @@ type ConcreteHandlerB struct {
 ```
 
 ##### Nhận xét về cách sử dụng Chain of Responsibility ở trên:
-* Handler : định nghĩa 1 interface để xử lý các yêu cầu. Gán giá trị cho đối tượng successor (không bắt buộc).
-* ConcreteHandler : xử lý yêu cầu. Có thể truy cập đối tượng successor (thuộc class Handler). Nếu đối tượng ConcreateHandler không thể xử lý được yêu cầu, nó sẽ gởi lời yêu cầu cho successor của nó.
+* Handle : định nghĩa 1 interface để xử lý các yêu cầu. Gán giá trị cho đối tượng successor (không bắt buộc).
+* ConcreteHandler: xử lý yêu cầu. Có thể truy cập đối tượng successor (thuộc class Handler). Nếu đối tượng ConcreateHandler không thể xử lý được yêu cầu, nó sẽ gởi lời yêu cầu cho successor của nó.
 -------------------------------------------------------------------------
 
 
@@ -607,7 +607,7 @@ func (c *ToggleOnCommand) Execute() string {
 ```
 
 ##### Nhận xét về cách sử dụng Command ở trên:
-* Command : là một interface class, chứa một phương thức trừu tượng thực thi một hành động. Request sẽ được đóng gói dưới dạng Command.
+* Command: là một interface class, chứa một phương thức trừu tượng thực thi một hành động. Request sẽ được đóng gói dưới dạng Command.
 * Đóng gói một yêu cầu trong một đối tượng. Dễ dàng chuyển dữ liệu dưới dạng đối tượng giữa các thành phần hệ thống.
 -------------------------------------------------------------------------
 
@@ -703,7 +703,7 @@ func (i *BookIterator) Value() interface{} {
 ```
 
 ##### Nhận xét về cách sử dụng Iterator ở trên:
-* Iterator : là một interface class, định nghĩa các phương thức để truy cập và duyệt qua các phần tử.
+* Iterator: là một interface class, định nghĩa các phương thức để truy cập và duyệt qua các phần tử.
 * Có thể implement các loại collection mới và iterator mới, sau đó chuyển chúng vào code hiện có mà không vi phạm bất cứ nguyên tắc gì.
 -------------------------------------------------------------------------
 
@@ -743,8 +743,8 @@ func (m *ConcreteMediator) Notify(msg string) {
 ```
 
 ##### Nhận xét về cách sử dụng Mediator ở trên:
-* Mediator : là một interface, định nghĩa các phương thức để giao tiếp với các Colleague object.
-* ConcreteMediator : cài đặt các phương thức của Mediator, biết và quản lý các Colleague object.
+* Mediator: là một interface, định nghĩa các phương thức để giao tiếp với các Colleague object.
+* ConcreteMediator: cài đặt các phương thức của Mediator, biết và quản lý các Colleague object.
 -------------------------------------------------------------------------
 
 
@@ -789,9 +789,186 @@ type Caretaker struct {
 ```
 
 ##### Nhận xét về cách sử dụng Memento ở trên:
-* Originator : đại diện cho đối tượng mà chúng ta muốn lưu. Nó sử dụng memento để lưu và khôi phục trạng thái bên trong của nó.
-* Memento : đại diện cho một đối tượng để lưu trữ trạng thái của Originator. 
+* Originator: đại diện cho đối tượng mà chúng ta muốn lưu. Nó sử dụng memento để lưu và khôi phục trạng thái bên trong của nó.
+* Memento: đại diện cho một đối tượng để lưu trữ trạng thái của Originator. 
 -------------------------------------------------------------------------
+
+
+### 19.Observer
+##### Giới thiệu về Observer
+Observer Pattern là một trong những Pattern thuộc nhóm hành vi Behavior Pattern. Nó định nghĩa mối phụ thuộc một – nhiều giữa các đối tượng để khi mà một đối tượng có sự thay đổi trạng thái, tất các thành phần phụ thuộc của nó sẽ được thông báo và cập nhật một cách tự động.
+##### Cách sử dụng Observer trong link github tìm được
+Trong phần repo ở [link github](https://github.com/AlexanderGrom/go-patterns) mà nhóm bọn mình đã tìm hiểu được thì việc sử dụng **Observer** được thể hiện như sau:
+```
+// Publisher interface.
+type Publisher interface {
+	Attach(observer Observer)
+	SetState(state string)
+	Notify()
+}
+
+// Observer provides a subscriber interface.
+type Observer interface {
+	Update(state string)
+}
+
+// ConcretePublisher implements the Publisher interface.
+type ConcretePublisher struct {
+	observers []Observer
+	state     string
+}
+```
+
+##### Nhận xét về cách sử dụng Observer ở trên:
+* Observer: định nghĩa một phương thức update() cho các đối tượng sẽ được subject thông báo đến khi có sự thay đổi trạng thái.
+* ConcretePublisher: cài đặt các phương thức của Subject, lưu trữ trạng thái danh sách các ConcretePublisher, gửi thông báo đến các observer của nó khi có sự thay đổi trạng thái.
+-------------------------------------------------------------------------
+
+
+### 20.State
+##### Giới thiệu về State
+State Pattern là một trong những Pattern thuộc nhóm hành vi Behavior Pattern. Nó cho phép một đối tượng thay đổi hành vi của nó khi trạng thái nội bộ của nó thay đổi. Đối tượng sẽ xuất hiện để thay đổi lớp của nó.
+##### Cách sử dụng State trong link github tìm được
+Trong phần repo ở [link github](https://github.com/AlexanderGrom/go-patterns) mà nhóm bọn mình đã tìm hiểu được thì việc sử dụng **State** được thể hiện như sau:
+```
+// MobileAlertStater provides a common interface for various states.
+type MobileAlertStater interface {
+	Alert() string
+}
+
+// MobileAlert implements an alert depending on its state.
+type MobileAlert struct {
+	state MobileAlertStater
+}
+
+// Alert returns a alert string
+func (a *MobileAlert) Alert() string {
+	return a.state.Alert()
+}
+
+// SetState changes state
+func (a *MobileAlert) SetState(state MobileAlertStater) {
+	a.state = state
+}
+```
+
+##### Nhận xét về cách sử dụng State ở trên:
+* State: là một interface hoặc abstract class xác định các đặc tính cơ bản của tất cả các đối tượng ConcreteState. Chúng sẽ được sử dụng bởi đối tượng Context để truy cập chức năng có thể thay đổi.
+* Giữ hành vi cụ thể tương ứng với trạng thái.
+-------------------------------------------------------------------------
+
+
+### 21.Strategy
+##### Giới thiệu về Strategy
+Strategy Pattern là một trong những Pattern thuộc nhóm hành vi Behavior Pattern. Nó cho phép định nghĩa tập hợp các thuật toán, đóng gói từng thuật toán lại, và dễ dàng thay đổi linh hoạt các thuật toán bên trong object. Strategy cho phép thuật toán biến đổi độc lập khi người dùng sử dụng chúng.
+##### Cách sử dụng Strategy trong link github tìm được
+Trong phần repo ở [link github](https://github.com/AlexanderGrom/go-patterns) mà nhóm bọn mình đã tìm hiểu được thì việc sử dụng **Strategy** được thể hiện như sau:
+```
+// Package strategy is an example of the Strategy Pattern.
+package strategy
+
+// StrategySort provides an interface for sort algorithms.
+type StrategySort interface {
+	Sort([]int)
+}
+
+// BubbleSort implements bubble sort algorithm.
+type BubbleSort struct {
+}
+
+// Sort sorts data.
+func (s *BubbleSort) Sort(a []int) {
+	size := len(a)
+	if size < 2 {
+		return
+	}
+	for i := 0; i < size; i++ {
+		for j := size - 1; j >= i+1; j-- {
+			if a[j] < a[j-1] {
+				a[j], a[j-1] = a[j-1], a[j]
+			}
+		}
+	}
+}
+```
+
+##### Nhận xét về cách sử dụng Strategy ở trên:
+* Đảm bảo nguyên tắc Open/Closed Principle (OCP) : chúng ta dễ dàng mở rộng và kết hợp hành vi mới mà không thay đổi ứng dụng.
+* Cung cấp một sự thay thế cho kế thừa.
+-------------------------------------------------------------------------
+
+
+### 22.Template method
+##### Giới thiệu về Template method
+Template Method Pattern được sử dụng khá nhiều trong mô hình Abstract – Concrete Class. Khi chúng ta muốn các Concrete class tự thực thi xử lí theo cách của nó, nhưng đồng thời vẫn đảm bảo tuận theo những ràng buộc nhất định từ Abstract class.
+##### Cách sử dụng Template method trong link github tìm được
+Trong phần repo ở [link github](https://github.com/AlexanderGrom/go-patterns) mà nhóm bọn mình đã tìm hiểu được thì việc sử dụng **Template method** được thể hiện như sau:
+```
+// QuotesInterface provides an interface for setting different quotes.
+type QuotesInterface interface {
+	Open() string
+	Close() string
+}
+
+// Quotes implements a Template Method.
+type Quotes struct {
+	QuotesInterface
+}
+
+// Quotes is the Template Method.
+func (q *Quotes) Quotes(str string) string {
+	return q.Open() + str + q.Close()
+}
+
+// NewQuotes is the Quotes constructor.
+func NewQuotes(qt QuotesInterface) *Quotes {
+	return &Quotes{qt}
+}
+```
+
+##### Nhận xét về cách sử dụng Template method ở trên:
+* Cho phép người dùng override chỉ một số phần nhất định của thuật toán lớn, làm cho chúng ít bị ảnh hưởng hơn bởi những thay đổi xảy ra với các phần khác của thuật toán.
+* Tái sử dụng code, tránh trùng lặp code: đưa những phần trùng lặp vào lớp cha (abstract class).
+-------------------------------------------------------------------------
+
+
+### 23.Visitor
+##### Giới thiệu về Visitor
+Visitor Pattern là một trong những Pattern thuộc nhóm hành vi Behavior Pattern. Visitor cho phép định nghĩa các thao tác trên một tập hợp các đối tượng không đồng nhất mà không làm thay đổi định nghĩa về lớp của các đối tượng đó.
+##### Cách sử dụng Visitor trong link github tìm được
+Trong phần repo ở [link github](https://github.com/AlexanderGrom/go-patterns) mà nhóm bọn mình đã tìm hiểu được thì việc sử dụng **Visitor** được thể hiện như sau:
+```
+// Visitor provides a visitor interface.
+type Visitor interface {
+	VisitSushiBar(p *SushiBar) string
+	VisitPizzeria(p *Pizzeria) string
+	VisitBurgerBar(p *BurgerBar) string
+}
+
+// Place provides an interface for place that the visitor should visit.
+type Place interface {
+	Accept(v Visitor) string
+}
+```
+
+```
+// VisitBurgerBar implements visit to BurgerBar.
+func (v *People) VisitBurgerBar(p *BurgerBar) string {
+	return p.BuyBurger()
+}
+```
+
+##### Nhận xét về cách sử dụng Visitor ở trên:
+* Visitor Là một interface class được sử dụng để khai báo các hành vi cho tất cả các loại visitor.
+* Cho phép một hoặc nhiều hành vi được áp dụng cho một tập hợp các đối tượng tại thời điểm run-time, tách rời các hành vi khỏi cấu trúc đối tượng.
+
+
+
+
+
+
+
+
 
 
 
