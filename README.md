@@ -35,7 +35,7 @@ func GetInstance() *Singleton {
 * Đoạn code cho chúng ta thấy chỉ có một instance của lớp.
 * Việc quản lý việc truy cập tốt hơn vì chỉ có một thể hiện duy nhất.
 * Có thể quản lý số lượng thể hiện của một lớp trong giớn hạn chỉ định.
-
+-------------------------------------------------------------------------
 
 ### 2.Abstract Factory 
 ##### Giới thiệu về Abstract Factory 
@@ -96,4 +96,7 @@ type CocaColaBottle struct {
 ##### Nhận xét về cách sử dụng Singleton Pattern ở trên:
 * định nghĩa ra CocaColaFactory để xây dựng, cài đặt các phương thức tạo các đối tượng cụ thể
 * định nghĩa ra AbstractBottle để khai báo dạng interface hoặc abstract class để định nghĩa đối tượng abstract.
+
+
+-------------------------------------------------------------------
 
