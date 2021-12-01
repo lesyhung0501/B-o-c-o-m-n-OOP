@@ -143,3 +143,42 @@ func (b *ConcreteBuilder) MakeFooter(str string) {
 * Builder : là interface khai báo phương thức tạo đối tượng.
 * ConcreteBuilder : kế thừa Builder và cài đặt chi tiết cách tạo ra đối tượng. Nó sẽ xác định và nắm giữ các thể hiện mà nó tạo ra, đồng thời nó cũng cung cấp phương thức để trả các các thể hiện mà nó đã tạo ra trước đó.
 
+------------------------------------------------------
+### 4.Factory Method
+##### Giới thiệu về Factory Method
+Factory Method Design Pattern hay gọi ngắn gọn là Factory Pattern là một trong những Pattern thuộc nhóm Creational Design Pattern. Nhiệm vụ của Factory Pattern là quản lý và trả về các đối tượng theo yêu cầu, giúp cho việc khởi tạo đổi tượng một cách linh hoạt hơn.
+##### Cách sử dụng Factory Method trong link github tìm được
+Trong phần repo ở [link github](https://github.com/AlexanderGrom/go-patterns) mà nhóm bọn mình đã tìm hiểu được thì việc sử dụng **Singleton Pattern** được thể hiện như sau:
+```
+// Creator provides a factory interface.
+type Creator interface {
+	CreateProduct(action action) Product // Factory Method
+}
+```
+
+```
+// CreateProduct is a Factory Method.
+func (p *ConcreteCreator) CreateProduct(action action) Product {
+	var product Product
+
+	switch action {
+	case A:
+		product = &ConcreteProductA{string(action)}
+	case B:
+		product = &ConcreteProductB{string(action)}
+	case C:
+		product = &ConcreteProductC{string(action)}
+	default:
+		log.Fatalln("Unknown Action")
+	}
+
+	return product
+}
+```
+
+
+##### Nhận xét về cách sử dụng Factory Method ở trên:
+* Creator là một supper class trong Factory Pattern và là một interface,
+* Factory class sử dụng Factory method dạng switch-case để xác định class con đầu ra.
+
+--------------------------------------------------------------
