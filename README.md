@@ -1,5 +1,10 @@
 # Báo cáo design partens
-Báo cáo môn OOP<br>
+Báo cáo môn OOP INT2204 3<br>
+Thành viên nhóm gồm:<br>
+* Lê Sỹ Hưng - 19020315<br>
+* Trần Đức Mạnh - 19020365<br>
+* Trần Sơn Tùng - 19020480
+
 ### 1.Singleton Pattern
 ##### Giới thiệu về Singleton Pattern
 Singleton đảm bảo chỉ duy nhất một thể hiện (instance) được tạo ra và nó sẽ cung cấp cho chúng ta một method để có thể truy xuất được thể hiện duy nhất đó mọi lúc mọi nơi trong chương trình.
