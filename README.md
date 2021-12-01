@@ -1,3 +1,3 @@
-# B-o-c-o-m-n-OOP
+# Báo cáo design partens
 Báo cáo môn OOP
 ngu
